@@ -73,7 +73,7 @@ func buildAdif(fullLog []LogLine, adifParams AdifParams) (adifList []string) {
 				adifLine.WriteString(adifElement("SIG_INFO", logLine.WWFF))
 			}
 		}
-		if adifParams.IsPOTA {
+		if logLine.MyPOTA != "" {
 			adifLine.WriteString(adifElement("MY_SIG", "POTA"))
 			adifLine.WriteString(adifElement("MY_SIG_INFO", logLine.MyPOTA))
 		}

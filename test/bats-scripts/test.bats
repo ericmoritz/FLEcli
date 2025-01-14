@@ -35,6 +35,12 @@
     diff test/output/temp/sample_pota.adif test/output/POTA/sample_pota.adif --strip-trailing-cr
 }
 
+@test "Is the generated POTA adif equivalent to the canonical one without the --pota flag?" {
+    mkdir -p test/output/temp
+    output=$(test/docker-FLEcli.sh adif -o -i test/data/sample_pota.txt test/output/temp/sample_pota.adif)
+    diff test/output/temp/sample_pota.adif test/output/POTA/sample_pota.adif --strip-trailing-cr
+}
+
 @test "Processing a FLE file with no QSO must fail!" {
     run test/docker-FLEcli.sh csv -o -i test/data/fle-4-no-qso.txt
     [ "$status" -eq 1 ]
